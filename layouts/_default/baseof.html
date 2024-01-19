@@ -5,9 +5,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<style type=text/css>body{font-family:monospace;}</style>
+	{{ with .Site.Params.iconPath }}<link rel="icon" href="{{ . }}" sizes="any" type="image/svg+xml">{{ end }} 
+
 	<title>{{ .Title }}</title>
+	<meta name="title" content="{{ .Title }}">
 	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary">
+	<meta property="twitter:title" content="{{ .Title }}">
+	<meta property="twitter:url" content="{{ .Site.BaseURL }}">
+	{{ with .Site.Params.iconPath }}<meta property="twitter:image" content="{{ . }}">{{ end }}	
+	{{ with .Site.Params.description }}<meta property="twitter:description" content="{{ . }}">{{ end }}
+
+
 	<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 	{{ range .Site.Params.customCSS -}}
 		<link rel="stylesheet" href="{{ . | relURL }}?rnd={{ now.Unix }}">
